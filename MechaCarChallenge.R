@@ -2,7 +2,7 @@ library("tidyverse")
 library("dplyr")
 library("corrplot")
 
-#Delivery 1
+#Delivery 1 - Analysis and linear regression model
 
 meCar <- read.csv("MechaCar_mpg.csv")
 
@@ -40,7 +40,7 @@ mylm$coeff
 confint(mylm, level = 0.95)
 
 
-#Delivery 2
+#Delivery 2 - mean, median, variance, and standard deviation
 
 meSuspension <- read.csv("Suspension_Coil.csv")
 summary(meSuspension)
@@ -70,8 +70,27 @@ lot_summary <- meSuspension %>%
 
 lot_summary
 
+#Delivery 3 - T-Tests
+
+#all manufacturing lots against the population mean 1500
+t.test(meSuspension$PSI, mean=1500)
+
+#three t-tests that compare each manufacturing lot against the population mean 1500
+lapply(split(meSuspension, factor(meSuspension$Manufacturing_Lot)), 
+       function(x)t.test(data=x, x$PSI, mean=1500, paired=FALSE))
 
 
+#Deliverable 4 - Design a statistical study to compare performance of the MechaCar
+#One Sample test
+set.seed(300) 
 
+test_sample <- rnorm(30, mean = mean(meSuspension$PSI), sd = sd(meSuspension$PSI))
+t.test(test_sample)
 
+#Two Same test
+test_sample_lower <- rnorm(30, mean = (mean(meSuspension$PSI) - 100), sd = sd(meSuspension$PSI))
+
+test_sample_higher <- rnorm(30, mean = (mean(meSuspension$PSI) + 100), sd = sd(meSuspension$PSI))
+
+t.test(test_sample_lower,test_sample_higher)
 
