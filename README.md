@@ -24,10 +24,11 @@ Therefore, we can state that there is sufficient evidence to reject our null hyp
 	
 ## Summary Statistics on Suspension Coils
  <p> Current Manufacturing data do indeed meet the design specification for all manufacturing costs in total and each lot individually. Looking at the table below, the standard deviation over mean is very low, which indicates that the suspension coils are close to the mean, and very small variation.  </p>
--- Total Summary <br>
-	![Total Summary](total_summary.PNG) <br><br>
--- Lot Summary <br>
-	![Lot Summary](lot_summary.PNG) <br><br>
+ 
+#### Total Summary <br>
+![Total Summary](total_summary.PNG) <br><br>
+#### Lot Summary <br>
+![Lot Summary](lot_summary.PNG) <br><br>
 
 ## T-Test against the population mean 1500
 - All against the population mean 1500 generated p-value of 2.2e-16.  
@@ -41,8 +42,9 @@ Therefore, we can state that there is sufficient evidence to reject our null hyp
 ## Study Design: MechaCar vs Competition (Sample)
 	The basic idea behind a Sample T-Test is to use statistics to evaluate two contrary hypotheses:
 	The One-Sample t-test, or student's test, compares the mean of a vector against a theoretical mean.
+	
 	H0: Null hypothesis: The average is the same as the sample used.
-	H2: True hypothesis: The average is different from the sample used.
+	Ha: True hypothesis: The average is different from the sample used.
 	
 - To create a randomized vector, a function called rnorm() is used.
 - Mean and standard deviation of MechaCar are used.	
