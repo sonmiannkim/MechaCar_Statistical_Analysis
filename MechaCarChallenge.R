@@ -73,24 +73,29 @@ lot_summary
 #Delivery 3 - T-Tests
 
 #all manufacturing lots against the population mean 1500
-t.test(meSuspension$PSI, mean=1500)
+t.test(meSuspension$PSI, mu=1500)
 
-#three t-tests that compare each manufacturing lot against the population mean 1500
-lapply(split(meSuspension, factor(meSuspension$Manufacturing_Lot)), 
-       function(x)t.test(data=x, x$PSI, mean=1500, paired=FALSE))
+# Peform t-test on Lot 1
+t.test(subset(meSuspension,Manufacturing_Lot=="Lot1")$PSI, mu = 1500)
 
+# Peform t-test on Lot 2
+t.test(subset(meSuspension,Manufacturing_Lot=="Lot2")$PSI, mu = 1500)
+
+# Peform t-test on Lot 3
+t.test(subset(meSuspension,Manufacturing_Lot=="Lot3")$PSI, mu = 1500)
 
 #Deliverable 4 - Design a statistical study to compare performance of the MechaCar
-#One Sample test
+#population Sample test data
 set.seed(300) 
+pop_mean = mean(meSuspension$PSI)
+test_sample <- rnorm(30, mean = pop_mean, sd = sd(meSuspension$PSI))
 
-test_sample <- rnorm(30, mean = mean(meSuspension$PSI), sd = sd(meSuspension$PSI))
-t.test(test_sample)
+#Gathering two Sample test 
+test_sample_lower <- rnorm(30, mean = (pop_mean - 100), sd = sd(meSuspension$PSI))
 
-#Two Same test
-test_sample_lower <- rnorm(30, mean = (mean(meSuspension$PSI) - 100), sd = sd(meSuspension$PSI))
+test_sample_higher <- rnorm(30, mean = (pop_mean + 100), sd = sd(meSuspension$PSI))
 
-test_sample_higher <- rnorm(30, mean = (mean(meSuspension$PSI) + 100), sd = sd(meSuspension$PSI))
-
-t.test(test_sample_lower,test_sample_higher)
+#Run T-Test against population sample test
+t.test(test_sample_lower,test_sample, mu = 1500)
+t.test(test_sample_higher,test_sample, mu = 1500)
 
