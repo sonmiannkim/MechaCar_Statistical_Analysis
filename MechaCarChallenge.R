@@ -71,7 +71,6 @@ lot_summary <- meSuspension %>%
 lot_summary
 
 #Delivery 3 - T-Tests
-
 #all manufacturing lots against the population mean 1500
 t.test(meSuspension$PSI, mu=1500)
 
