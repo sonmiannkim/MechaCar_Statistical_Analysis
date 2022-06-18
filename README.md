@@ -33,40 +33,79 @@ We'll look at each independent variable to determine if there is a significant r
 -- Lot Summary
 ![Lot Summary](lot_summary.PNG)
 
-## T-Test against the population mean 1500
--- All against the population mean 1500 generated p-value of 2.2e-16.  
-	- The true mean is between 1497.507 and 1500.053 and the mean of x is 1498.78, which sits right around mean values.
-	- Therefore we cannot reject the null hypothesis.  There is not enough evidence to prove it to be rejected.
+## T-Tests on Suspension Coils
+- H0 : There is no statistical difference between the observed sample mean and its presumed population mean.
+- Ha : There is a statistical difference between the observed sample mean and its presumed population mean.
 
--- Lot1, Lot2, Lot3 against the population mean 1500 generated p-value of 2.2e-16.  
-	- All of them generated a p-value < 2.2e-16 and 95 percent confidence intervals of approximately between 1946 (lowest lot3) and 1500.977 (highest lot2)
-	- Therefore we cannot reject the null hypothesis.  There is not enough evidence to prove it to be rejected.
+-- all manufacturing lots against the population mean 1500 : 
+| T-value  | df | p-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| -1.8931  | 149  | 0.06028  | true mean is not equal to 1500  | 1497.507 1500.053  | mean of x 1498.78  | 
+
+-- p-value > 0.05 suggests that the two groups Weak evidence.	
+-- A P value greater than 0.05 means that no effect was observed.
+
+
+-- Lot 1, Lot 2, Lot 3 against the population mean generated :
+--Lot 1
+| T-value  | df | P-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 0  | 49  | 1  | true mean is not equal to 1500  | 1499.719 1500.281 | mean of x 1500  | 
+
+-- p-value = 1 suggests that the two groups are identical, therefore	
+-- A P value equals 1 suggests there there is no difference between sample and population other than due to chance.
+
+--Lot 2
+| T-value  | df | P-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 0.51745  | 49  | 0.6072  | true mean is not equal to 1500  | 1499.423 1500.977 | mean of x 1500.2 | 
+
+-- p-value greater than 0.1 means there is very little or no evidence therefore 	
+-- A P value equals 0.6 suggests there there is no difference between sample and population other than due to chance.
+
+--Lot 3
+| T-value  | df | P-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| -2.0916  | 49  | 0.04168  | true mean is not equal to 1500  | 1492.431 1499.849 | mean of x 1496.14  | 
+
+
+-- p-value less than 0.05 means there is an evidence that they can be significantly (statistically) different therefore 	
+-- A P value equals 0.04 suggests there there is a difference between sample and population other than due to chance.
 
 ## Study Design: MechaCar vs Competition (Sample)
-	The basic idea behind a Sample T-Test is to use statistics to evaluate two contrary hypotheses:
-	The One-Sample t-test, or student's test, compares the mean of a vector against a theoretical mean.
+	The basic idea behind a Sample paired T-Test is to use statistics to evaluate two contrary hypotheses using two different samples:
+	The Two-Sample t-test, or student's test, compares the mean of a vector against a theoretical mean between those two sampls.
 	H0: Null hypothesis: The average is the same as the sample used.
 	H2: True hypothesis: The average is different from the sample used.
 	
+	#### Test Plan
 	- To create a randomized vector, a function called rnorm() is used.
 	- Mean and standard deviation of MechaCar are used.	
-	- 30 observations were assigned.
+	- Two 30 observations were assigned.
+	- Close mean of +100 / -100 will be used with the same standard devisation as population mean
 	
-	A t-test looks at the t-statistic, and the t-distribution values to determine the statistical significance.  Below is the test result:
-	
-	#### Single sample T-Test Result:
-    95 percent confidence interval:  1499.069 1504.015, t = 1241.7, df = 29, p-value < 2.2e-16  mean of 1502.542
-	
-	- Paired T-Test :
+	Note: A t-test looks at the t-statistic, and the t-distribution values to determine the statistical significance.  Below is the test result:
+
+	- Paired T-Test Result:
 	The Paired T-test, or dependent sample t-test, is used when the mean of the treated group is computed twice.
-	H0: No difference in mean.
-	H3: The two means are different.
 	
 	- To create a randomized vector, a function call rnorm() is used.
 	- Mean of MechaCar + 100 / - 100 is used and the same standard deviation is used.	
 	- Each sample - 30 observations were assigned.
 	
-	#### Paired T-Test Result:
-	95 percent confidence interval: -203.1115 -195.5869, p-value < 2.2e-16,  mean of x mean of y 1399.453  1598.802 
+	#### First Paired T-Test Result:
+
+	| T-value  | df | P-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+	| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+	| -962.71  | 57.818  | p-value < 2.2e-16  | true mean is not equal to 1500  |  -105.42070  -98.75794 | mean of x mean of y 1399.453  1501.542   | 
 	
-	With p-value of  2.2e-16, we can conclude the averages of the two groups are significantly different.
+	#### Second Paired T-Test Result:
+
+	| T-value  | df | P-value | Alternative hypothesis | 95 percent confidence interval | sample estimates |
+	| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+	|  -731.43  | 55.665  | p-value < 2.2e-16  | true mean is not equal to 1500  | 93.41752 101.10218 | mean of x mean of y 1598.802  1501.542   | 
+	
+	
+	-- With p-value of  2.2e-16, we can conclude the averages of the two sample groups are significantly different the populating mean therefore, 
+	-- We can state that there is no sufficient evidence to reject our null hypothesis.
+	
